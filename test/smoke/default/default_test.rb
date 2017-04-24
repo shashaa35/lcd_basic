@@ -8,13 +8,14 @@
 packages = []
 
 %w(net-tools php-common).each do |item|
-  case os[:family]
-  when 'redhat'
-    packages << 'httpd'
-  when 'debian'
-    packages << 'apache2'
-  end
-    packages << item
+  packages << item
+end
+
+case os[:family]
+when 'redhat'
+  packages << 'httpd'
+when 'debian'
+  packages << 'apache2'
 end
 
 packages.each do |pkg|
